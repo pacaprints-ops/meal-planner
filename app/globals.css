@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAFAF9;
+  --foreground: #1C1917;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Brand: Peach scale (primary CTAs / accents) */
+  --color-peach-50:  #fef7f3;
+  --color-peach-100: #fde8da;
+  --color-peach-200: #f7d9c4;
+  --color-peach-300: #f0b99a;
+  --color-peach-400: #e5906a;
+  --color-peach-500: #d4714a;
+  --color-peach-600: #b85c38;
+  --color-peach-700: #944828;
+
+  /* Brand: Mint scale (secondary / highlights) */
+  --color-mint-50:  #f0faf7;
+  --color-mint-100: #d8f0e9;
+  --color-mint-200: #b8e0d2;
+  --color-mint-300: #8bcbbf;
+  --color-mint-400: #55aa95;
+  --color-mint-500: #3a8a78;
+  --color-mint-600: #2c6e60;
+  --color-mint-700: #1f5248;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-up {
+  animation: fadeUp 0.35s ease-out forwards;
+}
+
+.fade-up-1 { opacity: 0; animation: fadeUp 0.35s ease-out 0.05s forwards; }
+.fade-up-2 { opacity: 0; animation: fadeUp 0.35s ease-out 0.1s forwards; }
+.fade-up-3 { opacity: 0; animation: fadeUp 0.35s ease-out 0.15s forwards; }
+.fade-up-4 { opacity: 0; animation: fadeUp 0.35s ease-out 0.2s forwards; }
+.fade-up-5 { opacity: 0; animation: fadeUp 0.35s ease-out 0.25s forwards; }
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
