@@ -68,3 +68,10 @@ body {
 .fade-in {
   animation: fadeIn 0.3s ease-out forwards;
 }
+
+@media print {
+  .no-print { display: none !important; }
+  nav, header, aside { display: none !important; }
+  body { background: white; }
+  * { animation: none !important; opacity: 1 !important; }
+}

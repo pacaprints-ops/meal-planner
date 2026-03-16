@@ -125,13 +125,23 @@ export default function PlanView({ items, members, weekStart, planId, householdI
           <h1 className="text-3xl font-bold text-stone-900">This Week</h1>
           <p className="text-stone-400 text-sm mt-1">w/c {formatted}</p>
         </div>
-        <button
-          onClick={handleGenerate}
-          disabled={loading}
-          className="bg-peach-500 hover:bg-peach-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition-all hover:shadow-md disabled:opacity-50"
-        >
-          {loading ? "Generating…" : hasPlan ? "Regenerate" : "Generate plan"}
-        </button>
+        <div className="flex items-center gap-2 no-print">
+          {hasPlan && (
+            <button
+              onClick={() => window.print()}
+              className="bg-white border border-stone-200 hover:border-peach-400 hover:text-peach-600 text-stone-500 text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all"
+            >
+              🖨️ Print
+            </button>
+          )}
+          <button
+            onClick={handleGenerate}
+            disabled={loading}
+            className="bg-peach-500 hover:bg-peach-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition-all hover:shadow-md disabled:opacity-50"
+          >
+            {loading ? "Generating…" : hasPlan ? "Regenerate" : "Generate plan"}
+          </button>
+        </div>
       </div>
 
       {!hasPlan && (
@@ -174,7 +184,7 @@ export default function PlanView({ items, members, weekStart, planId, householdI
                   <button
                     onClick={() => handleRedoDay(dayIndex)}
                     disabled={redoingDay === dayIndex}
-                    className="flex items-center gap-1.5 text-xs font-semibold bg-white border border-stone-200 hover:border-peach-400 hover:text-peach-600 hover:bg-peach-50 text-stone-400 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50"
+                    className="no-print flex items-center gap-1.5 text-xs font-semibold bg-white border border-stone-200 hover:border-peach-400 hover:text-peach-600 hover:bg-peach-50 text-stone-400 px-3 py-1.5 rounded-lg transition-all disabled:opacity-50"
                   >
                     {redoingDay === dayIndex ? (
                       <span className="animate-pulse">Redoing…</span>
@@ -233,7 +243,7 @@ export default function PlanView({ items, members, weekStart, planId, householdI
       )}
 
       {hasPlan && (
-        <div className="mt-8 flex justify-end fade-up-3">
+        <div className="mt-8 flex justify-end fade-up-3 no-print">
           <a href="/shopping" className="inline-flex items-center gap-2 bg-peach-500 hover:bg-peach-600 text-white font-semibold px-6 py-3 rounded-xl shadow-sm transition-all hover:shadow-md text-sm">
             Next: Shopping list →
           </a>
