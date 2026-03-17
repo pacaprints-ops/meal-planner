@@ -46,6 +46,7 @@ export default function AddMealForm({ householdId, members }: { householdId: str
 
     generateIngredients(data.id, name.trim(), useShortcuts).finally(() => {})
     router.push(`/meals/${data.id}`)
+    router.refresh()
   }
 
   const MEAL_TYPES = ["breakfast", "lunch", "dinner", "snack"]

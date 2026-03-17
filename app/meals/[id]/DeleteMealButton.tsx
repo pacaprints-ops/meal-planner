@@ -13,6 +13,7 @@ export default function DeleteMealButton({ mealId }: { mealId: string }) {
     setLoading(true)
     await supabase.from("meals").delete().eq("id", mealId)
     router.push("/meals")
+    router.refresh()
   }
 
   if (confirming) {

@@ -118,8 +118,9 @@ export async function getStaples(householdId: string) {
 }
 
 export async function addStaple(householdId: string, name: string) {
-  await supabase.from("staple_items").insert({ household_id: householdId, name: name.trim() })
+  const { data } = await supabase.from("staple_items").insert({ household_id: householdId, name: name.trim() }).select().single()
   revalidatePath("/shopping")
+  return data
 }
 
 export async function removeStaple(id: string) {

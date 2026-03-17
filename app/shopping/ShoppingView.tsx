@@ -53,10 +53,12 @@ export default function ShoppingView({ list, items: initialItems, staples: initi
   async function handleAddStaple(e: React.FormEvent) {
     e.preventDefault()
     if (!newStaple.trim()) return
-    await addStaple(householdId, newStaple.trim())
+    const data = await addStaple(householdId, newStaple.trim())
+    if (data) {
+      setStaples((prev) => [...prev, { id: data.id, name: newStaple.trim() }])
+    }
     setSelectedStaples((prev) => [...prev, newStaple.trim()])
     setNewStaple("")
-    window.location.reload()
   }
 
   async function handleRemoveStaple(id: string, name: string) {
@@ -98,6 +100,14 @@ export default function ShoppingView({ list, items: initialItems, staples: initi
           >
             Staples
           </button>
+          {list && (
+            <button
+              onClick={() => window.print()}
+              className="border border-stone-200 bg-white text-stone-600 hover:border-stone-300 hover:bg-stone-50 text-sm font-medium px-4 py-2.5 rounded-xl transition-all"
+            >
+              Print
+            </button>
+          )}
           <button
             onClick={handleGenerate}
             disabled={generating}

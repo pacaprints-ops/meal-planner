@@ -51,11 +51,12 @@ export default function BudgetForm({ householdId, currentBudget }: { householdId
     >
       <span>💰</span>
       <div className="text-left">
-        <p className="text-white text-xs font-bold leading-tight">
-          {currentBudget ? `£${currentBudget}/week` : "Set your weekly food budget"}
+        <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest leading-tight mb-0.5">Weekly food budget</p>
+        <p className="text-white text-sm font-bold leading-tight">
+          {currentBudget ? `£${currentBudget.toFixed(2)}` : "Not set"}
         </p>
         <p className="text-white/50 text-[10px] leading-tight">
-          {currentBudget ? "Tap to edit · tracked on shopping page" : "Tap to add · see your spend on the shopping page"}
+          {currentBudget ? "Tap to edit · spend tracked on shopping page" : "Tap to set · track your weekly spend"}
         </p>
       </div>
       <span className="text-white/40 group-hover:text-white/70 text-xs ml-1">✏️</span>

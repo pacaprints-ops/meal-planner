@@ -17,7 +17,7 @@ export default function IngredientList({ ingredients }: { ingredients: Ingredien
     router.refresh()
   }
 
-  if (ingredients.length === 0) return <p className="text-sm text-stone-400 mb-4">No ingredients yet — AI is generating them, or add manually below.</p>
+  if (ingredients.length === 0) return <p className="text-sm text-stone-400 mb-4">Ingredients will appear here shortly — or add your own below while you wait.</p>
 
   return (
     <ul className="divide-y divide-stone-100 mb-4 -mx-6">

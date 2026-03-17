@@ -15,6 +15,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [rememberMe, setRememberMe] = useState(true)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -62,6 +63,17 @@ export default function LoginForm() {
                 className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-peach-300"
                 placeholder="••••••••"
               />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="remember"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="rounded accent-peach-500"
+              />
+              <label htmlFor="remember" className="text-sm text-stone-500 cursor-pointer">Keep me signed in</label>
             </div>
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
