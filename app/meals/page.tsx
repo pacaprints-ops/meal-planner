@@ -2,6 +2,8 @@ import { supabase } from "@/lib/supabase"
 import Link from "next/link"
 import MealsDisplay from "./MealsDisplay"
 
+export const dynamic = "force-dynamic"
+
 export default async function MealsPage() {
   const { data: households } = await supabase.from("households").select("id").order("created_at", { ascending: false }).limit(1).single()
   const householdId = households?.id

@@ -7,6 +7,11 @@ import { supabase } from "@/lib/supabase"
 type Member = { id: string; name: string }
 type Preference = { id: string; member_id: string; preference_type: string; value: string; severity: string }
 
+async function deleteMember(memberId: string) {
+  await supabase.from("member_preferences").delete().eq("member_id", memberId)
+  await supabase.from("household_members").delete().eq("id", memberId)
+}
+
 const AVATAR_COLORS = ["bg-peach-500", "bg-mint-500", "bg-blue-500", "bg-violet-500", "bg-amber-500"]
 
 const PREF_STYLES: Record<string, string> = {
@@ -32,6 +37,14 @@ export default function MemberCard({ member, preferences, colorIndex = 0 }: { me
   const [value, setValue] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [deleting, setDeleting] = useState(false)
+
+  async function handleDelete() {
+    if (!confirm(`Remove ${member.name} from the household?`)) return
+    setDeleting(true)
+    await deleteMember(member.id)
+    router.refresh()
+  }
 
   const avatarColor = AVATAR_COLORS[colorIndex % AVATAR_COLORS.length]
 
@@ -71,16 +84,26 @@ export default function MemberCard({ member, preferences, colorIndex = 0 }: { me
             {preferences.length === 0 ? "No preferences set" : `${preferences.length} preference${preferences.length > 1 ? "s" : ""}`}
           </p>
         </div>
-        <button
-          onClick={() => setOpen(!open)}
-          className={`text-xs font-bold px-3 py-1.5 rounded-xl border transition-all ${
-            open
-              ? "bg-stone-100 text-stone-500 border-stone-200"
-              : "bg-peach-50 text-peach-600 border-peach-200 hover:bg-peach-100"
-          }`}
-        >
-          {open ? "Done" : "+ Pref"}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setOpen(!open)}
+            className={`text-xs font-bold px-3 py-1.5 rounded-xl border transition-all ${
+              open
+                ? "bg-stone-100 text-stone-500 border-stone-200"
+                : "bg-peach-50 text-peach-600 border-peach-200 hover:bg-peach-100"
+            }`}
+          >
+            {open ? "Done" : "+ Pref"}
+          </button>
+          <button
+            onClick={handleDelete}
+            disabled={deleting}
+            className="text-xs font-bold px-3 py-1.5 rounded-xl border border-red-200 text-red-400 hover:bg-red-50 transition-all disabled:opacity-40"
+            title="Remove member"
+          >
+            {deleting ? "…" : "✕"}
+          </button>
+        </div>
       </div>
 
       {/* Preferences */}

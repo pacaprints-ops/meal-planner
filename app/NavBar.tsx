@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 const appLinks = [
   { href: "/households", label: "Household", step: "1", icon: "🏠" },
@@ -20,7 +21,7 @@ export default function NavBar() {
       <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-5">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🍽️</span>
+            <Image src="/PacaPrints Logo .png" alt="Paca Planners" width={32} height={32} className="rounded-sm" />
             <span className="font-bold text-white text-lg tracking-tight">Menu Planner</span>
           </Link>
           <div className="flex items-center gap-2">
@@ -49,7 +50,7 @@ export default function NavBar() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl">🍽️</span>
+              <Image src="/PacaPrints Logo .png" alt="Paca Planners" width={28} height={28} className="rounded-sm" />
               <span className="font-bold text-white tracking-tight">Menu Planner</span>
             </Link>
             <div className="flex items-center gap-1">
@@ -89,7 +90,7 @@ export default function NavBar() {
       {/* Mobile top bar */}
       <nav className="md:hidden sticky top-0 z-50 flex items-center justify-between px-4 h-14" style={{ backgroundColor: "#0d4f45" }}>
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-lg">🍽️</span>
+          <Image src="/PacaPrints Logo .png" alt="Paca Planners" width={24} height={24} className="rounded-sm" />
           <span className="font-bold text-white text-sm tracking-tight">Menu Planner</span>
         </Link>
         <div className="flex items-center gap-3">
